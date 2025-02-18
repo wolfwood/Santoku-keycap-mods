@@ -26,6 +26,6 @@ module thumb_key(key="T1", homing=false) {
 	 );
 }
 
-function lookup_sculpted_thumb(key) = XAngleSkew(name2id_thumb(key));
+function lookup_thumb_sculpt(key) = XAngleSkew(name2id_thumb(key));
 
 thumb_key();

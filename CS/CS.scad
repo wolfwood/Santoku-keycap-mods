@@ -102,14 +102,14 @@ module CS_prerendered(type="R3") {
 
 function sculpt_compensate(type) =
   name2id_scuplt(type) >= 0 ? lookup_sculpted_sculpt(type) * (type == "R2" ? -1 : 1) :
-  name2id_thumb(type) >= 0 ? lookup_sculpted_thumb(type) :
-  type == "R2R" || type == "R4L" ? -lookup_sculpted_thumb("R2L") :
-  type == "R4R" ? lookup_sculpted_thumb("R2L") :
-  type == "R3R" ? -lookup_sculpted_thumb("R3L") :
-  type == "T1R" ? lookup_sculpted_thumb("T1") :
-  type == "T1L" ? -lookup_sculpted_thumb("T1") :
-  type == "T0R" ? lookup_sculpted_thumb("T0") :
-  type == "T0L" ? -lookup_sculpted_thumb("T0") :
+  name2id_thumb(type) >= 0 ? lookup_thumb_sculpt(type) :
+  type == "R2R" || type == "R4L" ? -lookup_thumb_sculpt("R2L") :
+  type == "R4R" ? lookup_thumb_sculpt("R2L") :
+  type == "R3R" ? -lookup_thumb_sculpt("R3L") :
+  type == "T1R" ? lookup_thumb_sculpt("T1") :
+  type == "T1L" ? -lookup_thumb_sculpt("T1") :
+  type == "T0R" ? lookup_thumb_sculpt("T0") :
+  type == "T0L" ? -lookup_thumb_sculpt("T0") :
   name2id_convex(type) >= 0 ? lookup_sculpted_convex(type) :
   assert(false, str("invalid CS key type: ", type));
 
