@@ -1,10 +1,14 @@
 use <../../includes/PseudoMakeMeKeyCapProfiles/Choc_Chicago_Steno_Thumb.scad>;
 
 function name2id_thumb(key) =
-  key == "T1" ? 2 :
-  key == "T0" ? 15 :
-  key == "R2L" ? 0 :
-  key == "R3L" ? 1 :
+  key == "T1"    ?  2 :
+  key == "T15"   ?  3 :
+  key == "T0"    ? 15 :
+  key == "T015"  ? 16 :
+  key == "T02"   ? 17 :
+  key == "T0175" ? 19 :
+  key == "R2L"   ?  0 :
+  key == "R3L"   ?  1 :
   -1;
 
 module thumb_key(key="T1", homing=false) {
