@@ -23,6 +23,10 @@ module trackpoint_notch(far=false, index=false) {
     _key_spacing = 19.05;
     _column_offset = 0;
     trackpoint_helper_dispatch(far=far, index=index, key_spacing=_key_spacing, column_offset=_column_offset) children();
+  } else if(keyboard == "ortho-des") {
+    _key_spacing = 18.5;
+    _column_offset = 0;
+    trackpoint_helper_dispatch(far=far, index=index, key_spacing=_key_spacing, column_offset=_column_offset) children();
   } else if(keyboard == "ortho-choc") {
     _key_spacing = [18, 17];
     _column_offset = 0;
