@@ -62,7 +62,7 @@ module CS_from_source(type="R3") {
     mirror([1,0,0]) invert_offset(x=false) thumb_key("T1");
   } else if (type == "T0L") {
     // smoother feel if you don't print with the curved side at the top
-    invert_offset() thumb_key("T0");
+     rotate([0,0,180]) invert_offset() thumb_key("T0");
   } else if (type == "T0R") {
     mirror([1,0,0]) invert_offset(x=false) thumb_key("T0");
   } else if (type == "R3x") {
