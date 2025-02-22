@@ -6,7 +6,9 @@ function name2id_thumb(key) =
   key == "T0"    ? 15 :
   key == "T015"  ? 16 :
   key == "T02"   ? 17 :
-  key == "T0175" ? 19 :
+  key == "T0175" ? 18 :
+  key == "TW15"  ? 19 :
+  key == "TW015" ? 20 :
   key == "R2L"   ?  0 :
   key == "R3L"   ?  1 :
   -1;

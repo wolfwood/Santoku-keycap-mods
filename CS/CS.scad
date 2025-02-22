@@ -86,6 +86,16 @@ module CS_from_source(type="R3") {
      rotate([0,0,180]) invert_offset() mirror([0,1,0]) thumb_key("T02");
   } else if (type == "T02R") {
     mirror([1,0,0]) invert_offset(x=false) mirror([0,1,0])  thumb_key("T02");
+  } else if (type == "TW15L") {
+    // smoother feel if you don't print with the curved side at the top
+    rotate([0,0,180]) invert_offset() thumb_key("TW15");
+  } else if (type == "TW15R") {
+    mirror([1,0,0]) invert_offset(x=false) thumb_key("TW15");
+  } else if (type == "TW015L") {
+    // smoother feel if you don't print with the curved side at the top
+     rotate([0,0,180]) invert_offset() thumb_key("TW015");
+  } else if (type == "TW015R") {
+    mirror([1,0,0]) invert_offset(x=false) thumb_key("TW015");
   } else if (type == "R3x") {
     convex_key(type);
   } else {
@@ -139,6 +149,10 @@ function sculpt_compensate(type) =
   type == "T0175L" ? -lookup_thumb_sculpt("T0175") :
   type == "T02R" ? lookup_thumb_sculpt("T02") :
   type == "T02L" ? -lookup_thumb_sculpt("T02") :
+  type == "TW15R" ? lookup_thumb_sculpt("TW15") :
+  type == "TW15L" ? -lookup_thumb_sculpt("TW15") :
+  type == "TW015R" ? lookup_thumb_sculpt("TW015") :
+  type == "TW015L" ? -lookup_thumb_sculpt("TW015") :
   name2id_convex(type) >= 0 ? lookup_sculpted_convex(type) :
   assert(false, str("invalid CS key type: ", type));
 

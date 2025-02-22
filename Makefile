@@ -51,7 +51,7 @@ cs-index-solo: $(addsuffix .$(FORMAT),$(addprefix things/CS-$(KEYBOARD)-index-,$
 CS_TP_TARGETS=$(addsuffix .$(FORMAT),$(addprefix things/CS-$(KEYBOARD)-middle-,$(TPKEYS))) $(addsuffix .$(FORMAT),$(addprefix things/CS-$(KEYBOARD)-index-,$(TPKEYS)))
 
 # skipping redundant key sculpts: R4 R2R R3R R4R
-CS_PROFILE=R2 R3 R3-homing R2L R3L R4L T1L T1R T0L T0R R3x
+CS_PROFILE=R2 R3 R3-homing R2L R3L R4L T1L T1R T0L T0R R3x T015L T015R T0175L T0175R T02L T02R T15L T15R TW15L TW15R TW015L TW015R
 
 CS_TARGETS=$(addsuffix .$(FORMAT),$(addprefix things/CS-,$(CS_PROFILE)))
 
