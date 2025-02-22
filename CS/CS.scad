@@ -166,23 +166,23 @@ if (is_undef(keycap)) {
     if (!index) { // middle
       if (is_undef(tpkey) || tpkey == "R3-homing")
         let (tpkey =  homing_dots() ? "R3-homing" : "R3")
-          printable(tpkey)
+          printable(tpkey, noop=raw())
           trackpoint_notch(far=true) CS(tpkey);
       if (is_undef(tpkey) || tpkey == "R2-near")
         translate(is_undef(tpkey) ? [0,y_spacing,0] : [0,0,0])
           let (tpkey = "R2R")
-          printable(tpkey)
+          printable(tpkey, noop=raw())
           trackpoint_notch(far=false) CS(tpkey);
       if (is_undef(tpkey) || tpkey == "R3")
         translate(is_undef(tpkey) ? [x_spacing,stagger,0] : [0,0,0])
           let (tpkey = "R3R")
-          printable(tpkey, other=true)
+          printable(tpkey, other=true, noop=raw())
           mirror([1,0,0])
           trackpoint_notch(far=false, index=true) CS(tpkey);
       if (is_undef(tpkey) || tpkey == "R2-far")
         translate(is_undef(tpkey) ? [x_spacing,stagger+y_spacing,0] : [0,0,0])
           let (tpkey = "R2")
-          printable(tpkey, other=true)
+          printable(tpkey, other=true, noop=raw())
           mirror([1,0,0])
           trackpoint_notch(far=true, index=true) CS(tpkey);
 
@@ -190,50 +190,50 @@ if (is_undef(keycap)) {
       if (!lateral) {
         if (is_undef(tpkey) || tpkey == "R3-homing")
           let (tpkey =  homing_dots() ? "R3-homing" : "R3")
-            printable(tpkey, other=true)
+            printable(tpkey, other=true, noop=raw())
             trackpoint_notch($x=-1,$y=1,far=false, index=true)
             CS(tpkey);
         if (is_undef(tpkey) || tpkey == "R2-far")
           translate(is_undef(tpkey) ? [0,y_spacing,0] : [0,0,0])
             let (tpkey = "R2")
-            printable(tpkey, other=true)
+            printable(tpkey, other=true, noop=raw())
             trackpoint_notch($x=-1,$y=-1,far=true)
             CS(tpkey);
         if (is_undef(tpkey) || tpkey == "R3")
           translate(is_undef(tpkey) ? [x_spacing,stagger,0] : [0,0,0])
             let (tpkey = "R3")
-            printable(tpkey)
+            printable(tpkey, noop=raw())
             trackpoint_notch($x=1,$y=1,far=true) CS(tpkey);
         if (is_undef(tpkey) || tpkey == "R2-near")
           translate(is_undef(tpkey) ? [x_spacing,stagger+y_spacing,0] : [0,0,0])
             let (tpkey = "R2")
-            printable(tpkey)
+            printable(tpkey, noop=raw())
             trackpoint_notch($x=1,$y=-1,far=false) CS(tpkey);
       } else {
         if (is_undef(tpkey) || tpkey == "R3-homing")
           let (tpkey =  /*homing_dots() ? "R3L-homing" :*/ "R3R")
-            printable(tpkey, other=notch_up)
+            printable(tpkey, other=notch_up, noop=raw())
             trackpoint_notch($x=-1,$y=1,far=false) CS("R3R");
         if (is_undef(tpkey) || tpkey == "R2-far")
           translate(is_undef(tpkey) ? [0,y_spacing,0] : [0,0,0])
             let (tpkey = "R2R")
-            printable(tpkey, other=notch_up)
+            printable(tpkey, other=notch_up, noop=raw())
             trackpoint_notch($x=-1,$y=-1, far=true) CS(tpkey);
         if (is_undef(tpkey) || tpkey == "R3")
           translate(is_undef(tpkey) ? [x_spacing,stagger,0] : [0,0,0])
             let (tpkey = "R3L")
-            printable(tpkey, other=!notch_up)
+            printable(tpkey, other=!notch_up, noop=raw())
             trackpoint_notch($x=1,$y=1,far=true) rotate([0,0,180]) CS("R3L");
         if (is_undef(tpkey) || tpkey == "R2-near")
           translate(is_undef(tpkey) ? [x_spacing,stagger+y_spacing,0] : [0,0,0])
             let (tpkey = "R2L")
-            printable(tpkey, other=!notch_up, reverse_sculpt=true)
+            printable(tpkey, other=!notch_up, reverse_sculpt=true, noop=raw())
             trackpoint_notch($x=1,$y=-1,far=false) rotate([0,0,180]) CS(tpkey);
       }
     }
   }
 } else {
-  printable(keycap) CS(keycap);
+  printable(keycap, noop=raw()) CS(keycap);
 }
 
 debug_orientation=false;

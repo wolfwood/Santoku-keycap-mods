@@ -1,5 +1,7 @@
 include <../settings.scad>;
 
+function raw() = !is_undef(raw) && raw;
+
 module _printable_choc(angle, surface_contact, surface_contact_stem, width, sculpt_compensate,
                        stem_width = 5.7, stem_thickness=1.05, stem_depth=1.1,
                   type, other=false, trim=true, noop=false) {

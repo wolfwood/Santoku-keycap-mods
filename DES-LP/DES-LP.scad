@@ -43,6 +43,6 @@ if (is_undef(keycap)) {
     *translate([x_spacing,stagger,0]) trackpoint_notch($x=-1,$y=1) DES("R3R");
   }
   } else {
-  printable(keycap)
+  printable(keycap, noop=raw())
     DES(keycap);
 }

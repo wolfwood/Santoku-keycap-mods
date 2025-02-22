@@ -1,6 +1,8 @@
 OPENSCAD=openscad
 SCADFLAGS = -q #--hardwarnings
 
+RAWDIR=things/raw
+
 MANIFOLD_FEATURE := $(shell $(OPENSCAD) --version --enable manifold > /dev/null 2>&1; echo $$?)
 MANIFOLD_BACKEND := $(shell $(OPENSCAD) --version --backend manifold > /dev/null 2>&1; echo $$?)
 
@@ -63,6 +65,21 @@ DES_LP_TARGETS=$(addsuffix .$(FORMAT),$(addprefix things/DES-LP-,$(DES_PROFILE))
 
 des-lp: $(DES_LP_TARGETS)
 
+
+RAW_CS_PROFILE=$(CS_PROFILE) R4 R4R
+RAW_CS_TARGETS=$(addsuffix .$(FORMAT),$(addprefix $(RAWDIR)/CS/,$(RAW_CS_PROFILE)))
+
+raw-cs: $(RAW_CS_TARGETS)
+
+RAW_DES_LP_TARGETS=$(addsuffix .$(FORMAT),$(addprefix $(RAWDIR)/DES-LP/,$(DES_PROFILE)))
+
+raw-des-lp: $(RAW_DES_LP_TARGETS)
+
+raw: raw-cs raw-des-lp
+
+$(RAWDIR)/%/:
+	mkdir -p $@
+
 -include .*.depends
 
 
@@ -98,6 +115,13 @@ things/CS-%.$(FORMAT): CS/CS.scad
 
 things/DES-LP-%.$(FORMAT): DES-LP/DES-LP.scad
 	$(OPENSCAD) $(SCADFLAGS) --render -d .des-lp-$*.depends -Dkeycap=\"$*\" -o $@ $<
+
+
+$(RAWDIR)/CS/%.$(FORMAT): CS/CS.scad | $(RAWDIR)/CS/
+	$(OPENSCAD) $(SCADFLAGS) --render -d .cs-$*.depends -Dkeycap=\"$*\" -Draw=true -o $@ $<
+
+$(RAWDIR)/DES-LP/%.$(FORMAT): DES-LP/DES-LP.scad | $(RAWDIR)/DES-LP/
+	$(OPENSCAD) $(SCADFLAGS) --render -d .des-lp-$*.depends -Dkeycap=\"$*\" -Draw=true -o $@ $<
 
 
 includes/PseudoMakeMeKeyCapProfiles/skin.scad: includes/PseudoMakeMeKeyCapProfiles/list-comprehension-demos/skin.scad
