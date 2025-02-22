@@ -1,5 +1,6 @@
 use <../trackpoint_notch.scad>;
 include <../settings.scad>;
+use <../util/printable.scad>;
 
 use <DES-bindings/sculpted.scad>;
 
@@ -17,24 +18,18 @@ module DES(type="R3"){
   }
 }
 
-module printable(type, other=false, trim=true) {
-  difference(){
-    rotate([0,0,(other ? -45 : 135) + (fans_on_left ? -90 : 0)])
-      rotate([0,(other ? 1 : -1)*45,0])
-      rotate([sculpt_compensation() ? -lookup_sculpted_sculpt(type) : 0, 0, 0])
-      children();
-
-    if(trim){
-      // nip off the edge so the keycap sticks better to the print bed
-      h=5;
-      // for R3, 5.6 is minimally invasive, but not as effective
-      cut_distance = lookup_sculpted_sculpt(type) != 0 && sculpt_compensation() ? 5.5 : 4.9;
-      translate([0,0,-h/2 - cut_distance]) cube([40,40,h], center=true);
-      if (trim_both_sides())
-        rotate([90,0,-45])
-          translate([0,0,-h/2 - cut_distance]) cube([40,40,h], center=true);
-    }
-  }
+module printable(type, other=false, trim=true, noop=false) {
+  _printable_choc(angle = 50,
+                  surface_contact = 1.5,
+                  surface_contact_stem = .75,
+                  width = 17.16 + 0.89,
+                  stem_depth = 1.4,
+                  sculpt_compensate =  -lookup_sculpted_sculpt(type),
+                  type=type,
+                  other=other,
+                  trim=trim,
+                  noop=noop)
+    children();
 }
 
 

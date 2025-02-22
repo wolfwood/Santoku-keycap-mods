@@ -4,9 +4,10 @@ grid_spacing = [54,66];
 grid_stagger = true;
 
 
-// original code was for a prusa MK3 with the print cooling fan duct on the right of the extruder
-// MK4 has fan ducts on the left (and front)
-fans_on_left=true;
+// prusa MK3 with the print cooling fan duct on the right of the extruder: 135
+// MK4 has fan ducts on the left (and front): 45
+// MK4S has fan in front: 90
+fan_rotation = 90;
 
 
 // === Aesthetics ===

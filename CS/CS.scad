@@ -1,3 +1,4 @@
+use <../util/printable.scad>;
 use <../trackpoint_notch.scad>;
 include <../settings.scad>;
 
@@ -141,24 +142,17 @@ function sculpt_compensate(type) =
   name2id_convex(type) >= 0 ? lookup_sculpted_convex(type) :
   assert(false, str("invalid CS key type: ", type));
 
-module printable(type, other=false, trim=true, reverse_sculpt=false) {
-  difference(){
-    rotate([0,0,(other ? -45 : 135) + (fans_on_left ? -90 : 0)])
-      rotate([0,(other ? 1 : -1)*45,0])
-      rotate([sculpt_compensation() ? sculpt_compensate(type) * (reverse_sculpt ? -1 : 1) : 0, 0, 0])
-      children();
-
-    if(trim){
-      // nip off the edge so the keycap sticks better to the print bed
-      h=5;
-      // for R3, 5.6 is minimally invasive, but not as effective
-      cut_distance = lookup_sculpted_sculpt(type) != 0 && sculpt_compensation() ? 5.5 : 4.9;
-      translate([0,0,-h/2 - cut_distance]) cube([40,40,h], center=true);
-      if (trim_both_sides())
-        rotate([90,0,-45])
-          translate([0,0,-h/2 - cut_distance]) cube([40,40,h], center=true);
-    }
-  }
+module printable(type, other=false, trim=true, reverse_sculpt=false, noop=false) {
+  _printable_choc(angle = 55,
+             surface_contact = 1.5,
+             surface_contact_stem = 1,
+             width = (type == "T015R" || type == "T0175R" || type == "T02R" ||  type == "T015L" || type == "T0175L" || type == "T02L" || type == "T15R" || type == "T15L") ? 15.65 /*15.923*/ : 17.2,
+             sculpt_compensate = sculpt_compensate(type) * (reverse_sculpt ? -1 : 1),
+             type=type,
+             other=other,
+             trim=trim,
+             noop=noop)
+    children();
 }
 
 index = false;
